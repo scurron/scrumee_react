@@ -30,7 +30,7 @@ const resolvers = {
     retrospectives(parent, args, ctx, info) {
       return ctx.db.query.retrospectives({ where: { isEnabled: false } }, info)
     },
-    retrospectives(parent, { id }, ctx, info) {
+    retrospective(parent, { id }, ctx, info) {
       return ctx.db.query.retrospective({ where: { id: id } }, info)
     }
   },
