@@ -1,0 +1,40 @@
+interface UserInterface {
+  id: ID! @unique
+  email: String! @unique
+  password: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  isEnabled: Boolean! @default(value: "false")
+}
+
+type Sprint @model {
+  id: ID! @unique
+  title: String!  
+  startsAt: DateTime!
+  endsAt: DateTime!
+  isEnabled: Boolean! @default(value: "false")
+}
+
+type Retrospective @model {
+  id: ID! @unique
+  title: String!
+  sprint: Sprint!
+  isEnabled: Boolean! @default(value: "false")
+}
+
+type Attendees @model {
+  id: ID! @unique
+  users: [User!]! @relation(name: "RetrospectiveAttendees")
+}
+
+type User implements UserInterface @model {
+  avatar: String
+}
+
+type Post @model {
+  id: ID! @unique
+  isPublished: Boolean!
+  title: String!
+  text: String!
+}
+

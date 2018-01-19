@@ -1,0 +1,32 @@
+# import Post from "./generated/prisma.graphql"
+
+type Query {
+  feed: [Post!]!
+  drafts: [Post!]!
+  post(id: ID!): Post
+  me: User
+  sprints: [Sprint!]!
+  sprint(id: ID!): Sprint
+  retrospectives: [Retrospective!]!
+  retrospective(id: ID!): Retrospective
+  
+}
+
+type Mutation {
+  signup(email: String!, password: String!, name: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  createDraft(title: String!, text: String): Post  
+  deletePost(id: ID!): Post
+  publish(id: ID!): Post
+  createSprint(title: String!, startsAt: String!, endsAt: String!): Sprint
+  deleteSprint(id: ID!): Sprint
+  enableSprint(id: ID!): Sprint
+  createRetrospective(title: String!): Retrospective
+  deleteRetrospective(id: ID!): Retrospective
+  enableRetrospective(id: ID!): Retrospective
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
